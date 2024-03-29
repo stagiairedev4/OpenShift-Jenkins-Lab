@@ -174,4 +174,4 @@ git push origin master
 You should see a build trigger in Jenkins after a brief delay.
 
 ## Thanks!
-If you've made it this far, you have finished the lab! You should now be familiar with the basics around CI/CD on OpenShift with Jenkins. Please feel free to leave an issue if you have an idea or fix to improve the lab. Your feedback is always welcome!
+If you've made it this far, you have finished the lab! You should now be familiar with the basics around CI/CD on OpenShift with Jenkins. Please feel free to leave an issue if you have an idea or fix to improve the lab. Your feedback is always welcome!++
