@@ -38,7 +38,7 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject(devProject) {
-                            skopeoToken = openshift.raw("sa get-token jenkins").out.trim()
+                            //skopeoToken = openshift.raw("sa get-token jenkins").out.trim()
                         }
                         imageTag = getVersionFromPom()
                     }
@@ -79,33 +79,6 @@ pipeline {
             steps {
                 script {
                     skopeoCopy(skopeoToken, devProject, testProject, appName, imageTag)
-                }
-            }
-        }
-        stage("Deploy Application to Test") {
-            steps {
-                script {
-                    deployApplication(appName, imageTag, testProject, replicas)
-                }
-            }
-        }
-        stage("Prompt for Prod Approval") {
-            steps {
-                input "Deploy to prod?"
-            }
-        }
-        stage("Copy image to Prod") {
-            agent { label "jenkins-agent-skopeo" }
-            steps {
-                script {
-                    skopeoCopy(skopeoToken, devProject, prodProject, appName, imageTag)
-                }
-            }
-        }
-        stage("Deploy Application to Prod") {
-            steps {
-                script {
-                    deployApplication(appName, imageTag, prodProject, replicas)
                 }
             }
         }
